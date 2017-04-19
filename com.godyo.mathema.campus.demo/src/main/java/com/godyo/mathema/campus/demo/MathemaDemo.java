@@ -12,6 +12,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
  
 public class MathemaDemo extends Application {
+	
+	GreetingsFactory greetingsFac = new GreetingsFactory();
+	
     public static void main(String[] args) {
         launch(args);
     }
@@ -38,7 +41,7 @@ public class MathemaDemo extends Application {
 
             	switch (btn.getText()) {
             		case COMMAND_GREETING: 
-            			textLabel.setText("Hallo Mathema Campus");
+            			textLabel.setText(greetingsFac.createGreeting("Mathema Campus"));
             			btn.setText(COMMAND_SILENT);
             			break;
             		case COMMAND_SILENT: 

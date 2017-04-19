@@ -22,7 +22,13 @@ pipeline {
 	stages {
 		stage("Build") {
 			steps {
-				sh "mvn -f ${projectDir}/pom.xml -e clean install"
+				sh "mvn -f ${projectDir}/pom.xml -e clean install -DskipTests"
+			}
+		}
+		stage("Test") {
+			steps {
+				sh "mvn -f ${projectDir}/pom.xml test"
+				junit allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml'
 			}
 		}
 	}
@@ -32,7 +38,7 @@ pipeline {
 			step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'manuel.beckmann@godyo.com', sendToIndividuals: false])
 		}
 		success {
-			archiveArtifacts artifacts: "${projectDir}/target/**"
+			archiveArtifacts artifacts: "${projectDir}/target/jfx/native/**"
 		}
 	}
 }
