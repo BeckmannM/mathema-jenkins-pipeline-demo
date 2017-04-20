@@ -36,8 +36,10 @@
 					<includes>
 						<include>**/_*.java</include>
 					</includes>
+					<testFailureIgnore>true</testFailureIgnore>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>com.zenjava</groupId>
 				<artifactId>javafx-maven-plugin</artifactId>
@@ -68,6 +70,9 @@
 					</execution>
 				</executions>
 			</plugin>
+
+
+			<!-- Erzeugung eines Zips -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
