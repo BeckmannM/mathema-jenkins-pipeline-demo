@@ -12,4 +12,10 @@ public class _GreetingsFactory {
 		String greeting = greetingsFac.createGreeting("Mathema");
 		assertEquals("Hallo Mathema", greeting);
 	}
+	
+	@Test(expected=NullPointerException.class)
+	public void testCreateGreeting_null() {
+		GreetingsFactory greetingsFac = new GreetingsFactory();
+		greetingsFac.createGreeting(null);
+	}
 }
