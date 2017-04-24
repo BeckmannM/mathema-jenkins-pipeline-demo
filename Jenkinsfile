@@ -43,6 +43,11 @@ pipeline {
 				junit allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml'
 			}
 		}
+		stage("Deploy") {
+			steps {
+			// TODO
+			}
+		}
 	}
 	
 	// Post-Build-Sektion
