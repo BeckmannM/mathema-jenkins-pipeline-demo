@@ -46,11 +46,11 @@ pipeline {
 	
 	// Post-Build-Sektion
 	post {
-		always {
-			step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'manuel.beckmann@godyo.com', sendToIndividuals: false])
-		}
 		success {
 			archiveArtifacts artifacts: "${projectDir}/target/mathemaDemo.zip"
+		}
+		always {
+			myPostActions()
 		}
 	}
 }
