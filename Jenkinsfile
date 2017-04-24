@@ -8,6 +8,7 @@ pipeline {
 	// M3 unter Global Tool Konfiguration
 	tools {
 		maven "M3"
+		jdk "Java 1.8"
 	}
 	
 	// Definition von Umgebungsvariablen
