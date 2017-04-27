@@ -13,7 +13,9 @@ pipeline {
 	
 	// Definition von Umgebungsvariablen
 	environment {
-		projectDir = "com.godyo.mathema.campus.demo"
+		projectDir = "com.godyo.mathema.campus.demo";
+		skipDeplyoment = false;
+		deploymnetTarget = null;
 	}
 	
 	// Optionen
@@ -45,17 +47,7 @@ pipeline {
 		}
 		stage("Deploy") {
 			steps {
-				input(
-					message: 'Alles gut? Ausliefern?', 
-					ok: 'OK', 
-					parameters: [
-						string(
-							defaultValue: 'C:\\Users\\Manuel\\Desktop\\MathemaCampus2017\\Deployment', 
-							description: 'Wohin soll ausgeliefert werden?', 
-							name: 'Verzeichnisname'
-							)
-						]
-					)
+				myDeployStep(zipFile: "${projectDir}/target/mathemaDemo.zip", targetDir: "C:\\Users\\Manuel\\Desktop\\MathemaCampus2017\\Deployment")
 			}
 		}
 	}
