@@ -49,7 +49,7 @@ pipeline {
 		}
 		stage("Deploy") {
 			when {
-				expression: params.DEPLOY
+				expression params.DEPLOY
 			}
 			steps {
 				myDeployStep("${projectDir}/target/mathemaDemo.zip")
