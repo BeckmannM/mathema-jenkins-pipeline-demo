@@ -45,7 +45,17 @@ pipeline {
 		}
 		stage("Deploy") {
 			steps {
-			// TODO
+				input(
+					message: 'Alles gut? Ausliefern?', 
+					ok: 'OK', 
+					parameters: [
+						string(
+							defaultValue: 'C:\\Users\\Manuel\\Desktop\\MathemaCampus2017\\Deployment', 
+							description: 'Wohin soll ausgeliefert werden?', 
+							name: 'Verzeichnisname'
+							)
+						]
+					)
 			}
 		}
 	}
