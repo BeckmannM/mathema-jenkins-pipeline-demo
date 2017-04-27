@@ -5,7 +5,12 @@ pipeline {
 		label "master"
 	}
 	
-	// M3 unter Global Tool Konfiguration
+	// Build-Parameter
+	parameters {
+		booleanParam(name: 'DEPLOY', defaultValue: false, description: 'Soll am Ende ausgeliefert werden?')
+	}
+
+	// Global Tool Konfiguration
 	tools {
 		maven "M3"
 		jdk "Java 1.8"
@@ -14,8 +19,6 @@ pipeline {
 	// Definition von Umgebungsvariablen
 	environment {
 		projectDir = "com.godyo.mathema.campus.demo";
-		skipDeplyoment = false;
-		deploymnetTarget = null;
 	}
 	
 	// Optionen
@@ -26,7 +29,6 @@ pipeline {
 		buildDiscarder(logRotator(numToKeepStr: '5'))
 		// Timeout nach einer Stunde
 		timeout(time: 1, unit: 'HOURS')
-		timestamps()
 	}
 	
 	// Stages-Sektion
@@ -46,6 +48,9 @@ pipeline {
 			}
 		}
 		stage("Deploy") {
+			when {
+				expression: params.DEPLOY
+			}
 			steps {
 				myDeployStep("${projectDir}/target/mathemaDemo.zip")
 			}
