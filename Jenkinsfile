@@ -47,7 +47,7 @@ pipeline {
 		}
 		stage("Deploy") {
 			steps {
-				myDeployStep(zipFile: "${projectDir}/target/mathemaDemo.zip", targetDir: "C:\\Users\\Manuel\\Desktop\\MathemaCampus2017\\Deployment")
+				myDeployStep("${projectDir}/target/mathemaDemo.zip")
 			}
 		}
 	}
