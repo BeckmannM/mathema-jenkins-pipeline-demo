@@ -35,14 +35,13 @@ pipeline {
 				sh "cp -r ${projectDir}/target/jfx/native/mathemaDemo output/"
 			}
 		}
-	}
-	
-	stage("Test") {
-		steps {
-			// Nur Maven Junit-Tests ausfuehren
-			sh "mvn -f ${projectDir}/pom.xml test"
-			// Aufzeichnung der Test-Resultate
-			junit allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml'
+		stage("Test") {
+			steps {
+				// Nur Maven Junit-Tests ausfuehren
+				sh "mvn -f ${projectDir}/pom.xml test"
+				// Aufzeichnung der Test-Resultate
+				junit allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml'
+			}
 		}
 	}
 	
