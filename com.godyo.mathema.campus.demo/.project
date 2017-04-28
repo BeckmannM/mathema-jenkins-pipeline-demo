@@ -20,11 +20,4 @@
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>Jenkinsfile</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/Jenkinsfile</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>
