@@ -51,10 +51,10 @@ pipeline {
 		stage("Deploy") {
 			when {
 				// Nur Ausfuehren, wenn Parameter gesetzt und der Build bisher erfolgreich war
-				expression {params.DEPLOY}
+				expression {params.DEPLOY && currentBuild.result.equals("SUCCESS")}
 			}
 			steps {
-				sh "cp -r 'output/**' 'C:/Users/Manuel/Desktop/MathemaCampus2017/Deployment'"
+				sh "cp -r output/** C:/Users/Manuel/Desktop/MathemaCampus2017/Deployment"
 			}
 		}
 	}
