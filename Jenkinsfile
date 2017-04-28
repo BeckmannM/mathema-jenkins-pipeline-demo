@@ -5,6 +5,11 @@ pipeline {
 		label "master"
 	}
 	
+	// Build-Parameter
+	parameters {
+		booleanParam(name: 'DEPLOY', defaultValue: false, description: 'Soll am Ende ausgeliefert werden?')
+	}
+	
 	// Global Tool Konfiguration
 	tools {
 		maven "M3"
@@ -41,6 +46,15 @@ pipeline {
 				sh "mvn -f ${projectDir}/pom.xml test"
 				// Aufzeichnung der Test-Resultate
 				junit allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml'
+			}
+		}
+		stage("Deploy") {
+			when {
+				// Nur Ausfuehren, wenn Parameter gesetzt und der Build bisher erfolgreich war
+				expression {params.DEPLOY && currentBuild.result.equals("SUCCESS")}
+			}
+			steps {
+				cp -r "output/**" "C:/Users/Manuel/Desktop/MathemaCampus2017/Deployment"
 			}
 		}
 	}
