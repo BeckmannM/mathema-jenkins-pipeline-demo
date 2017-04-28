@@ -37,6 +37,15 @@ pipeline {
 		}
 	}
 	
+	stage("Test") {
+		steps {
+			// Nur Maven Junit-Tests ausfuehren
+			sh "mvn -f ${projectDir}/pom.xml test"
+			// Aufzeichnung der Test-Resultate
+			junit allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml'
+		}
+	}
+	
 	// Post-Build-Sektion
 	post {
 		success {
