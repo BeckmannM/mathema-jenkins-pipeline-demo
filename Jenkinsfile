@@ -49,7 +49,8 @@ pipeline {
 		}
 		stage("Deploy") {
 			when {
-				expression {params.DEPLOY}
+				// Nur Ausführen, wenn Parameter gesetzt und der Build bisher erfolgreich war
+				expression {params.DEPLOY && currentBuild.result.equals("SUCCESS")}
 			}
 			steps {
 				myDeployStep("${projectDir}/target/mathemaDemo.zip")
