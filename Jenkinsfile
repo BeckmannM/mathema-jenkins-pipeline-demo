@@ -32,7 +32,7 @@ pipeline {
 			steps {
 				// Maven-Aufruf ohne Tests
 				sh "mvn -f ${projectDir}/pom.xml -e clean install -DskipTests"
-				sh "cp ${projectDir}/target/jfx/native/mathemaDemo target/"
+				sh "cp -r ${projectDir}/target/jfx/native/mathemaDemo target/"
 			}
 		}
 	}
