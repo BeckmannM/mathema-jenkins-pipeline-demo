@@ -54,7 +54,7 @@ pipeline {
 				expression {params.DEPLOY && currentBuild.result.equals("SUCCESS")}
 			}
 			steps {
-				cp -r "output/**" "C:/Users/Manuel/Desktop/MathemaCampus2017/Deployment"
+				sh "cp -r 'output/**' 'C:/Users/Manuel/Desktop/MathemaCampus2017/Deployment'"
 			}
 		}
 	}
